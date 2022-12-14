@@ -16,8 +16,6 @@ class UserSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=User.objects.all())],
     )
 
-    password = serializers.CharField(write_only=True)
-
     class Meta:
         model = User
         fields = (
@@ -29,7 +27,11 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "is_superuser",
         )
-        read_only_fields = ("id", "is_superuser")
+        extra_kwargs = {
+            "password": {"write_only": True},
+            "id": {"read_only": True},
+            "is_superuser": {"read_only": True},
+        }
 
     def create(self, validated_data: dict) -> User:
         return User.objects.create_superuser(**validated_data)

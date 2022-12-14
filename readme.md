@@ -1,3 +1,7 @@
+
+<img height="700" align="center" src="https://i.imgur.com/vBaVW7P.png"></img>
+
+
 # M5 - BandKamp Generic View
 
 ## Instalação dos pacotes de teste
